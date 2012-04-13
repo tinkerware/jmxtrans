@@ -5,7 +5,6 @@
     "queries" : [ {
       "outputWriters" : [ {
         "@class" : "com.googlecode.jmxtrans.model.output.KeyOutWriter",
-        "disabled.@class" : "com.googlecode.jmxtrans.model.output.GraphiteWriter",
         "settings" : {
           "outputFile" : "${output.dir}/heap.txt",
           "maxLogFileSize" : "10MB",
@@ -20,7 +19,6 @@
     }, {
       "outputWriters" : [ {
         "@class" : "com.googlecode.jmxtrans.model.output.KeyOutWriter",
-        "disabled.@class" : "com.googlecode.jmxtrans.model.output.GraphiteWriter",
         "settings" : {
           "outputFile" : "${output.dir}/pool.txt",
           "maxLogFileSize" : "10MB",
@@ -36,7 +34,6 @@
     }, {
       "outputWriters" : [ {
         "@class" : "com.googlecode.jmxtrans.model.output.KeyOutWriter",
-        "disabled.@class" : "com.googlecode.jmxtrans.model.output.GraphiteWriter",
         "settings" : {
           "outputFile" : "${output.dir}/gc.txt",
           "maxLogFileSize" : "10MB",
@@ -54,7 +51,6 @@
     }, {
       "outputWriters" : [ {
         "@class" : "com.googlecode.jmxtrans.model.output.KeyOutWriter",
-        "disabled.@class" : "com.googlecode.jmxtrans.model.output.GraphiteWriter",
         "settings" : {
           "outputFile" : "${output.dir}/threads.txt",
           "maxLogFileSize" : "10MB",
