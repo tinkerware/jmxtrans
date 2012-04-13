@@ -1,0 +1,73 @@
+{
+  "servers" : [ {
+    "port" : "${jmx.port}",
+    "host" : "${jmx.host}",
+    "queries" : [ {
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.KeyOutWriter",
+        "disabled.@class" : "com.googlecode.jmxtrans.model.output.GraphiteWriter",
+        "settings" : {
+          "outputFile" : "${output.dir}/heap.txt",
+          "maxLogFileSize" : "10MB",
+          "maxLogBackupFiles" : 100,
+          "port" : "${graphite.port}",
+          "host" : "${graphite.host}"
+        }
+      } ],
+      "obj" : "java.lang:type=Memory",
+      "resultAlias": "heap",
+      "attr" : [ "HeapMemoryUsage", "NonHeapMemoryUsage" ]
+    }, {
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.KeyOutWriter",
+        "disabled.@class" : "com.googlecode.jmxtrans.model.output.GraphiteWriter",
+        "settings" : {
+          "outputFile" : "${output.dir}/pool.txt",
+          "maxLogFileSize" : "10MB",
+          "maxLogBackupFiles" : 100,
+          "port" : "${graphite.port}",
+          "host" : "${graphite.host}",
+          "typeNames" : [ "name" ]
+        }
+      } ],
+      "obj" : "java.lang:type=MemoryPool,name=*",
+      "resultAlias": "pool",
+      "attr" : [ "Usage" ]
+    }, {
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.KeyOutWriter",
+        "disabled.@class" : "com.googlecode.jmxtrans.model.output.GraphiteWriter",
+        "settings" : {
+          "outputFile" : "${output.dir}/gc.txt",
+          "maxLogFileSize" : "10MB",
+          "maxLogBackupFiles" : 100,
+          "port" : "${graphite.port}",
+          "host" : "${graphite.host}",
+          "typeNames" : [ "name" ]
+        }
+      } ],
+      "obj" : "java.lang:type=GarbageCollector,name=*",
+      "resultAlias": "gc",
+      "attr" : [ "CollectionCount", "CollectionTime" ]
+    } ],
+    "numQueryThreads" : 4
+    }, {
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.KeyOutWriter",
+        "disabled.@class" : "com.googlecode.jmxtrans.model.output.GraphiteWriter",
+        "settings" : {
+          "outputFile" : "${output.dir}/threads.txt",
+          "maxLogFileSize" : "10MB",
+          "maxLogBackupFiles" : 100,
+          "port" : "${graphite.port}",
+          "host" : "${graphite.host}",
+          "typeNames" : [ "name" ]
+        }
+      } ],
+      "obj" : "java.lang:type=Threading",
+      "resultAlias": "threads",
+      "attr" : [ "DaemonThreadCount", "PeakThreadCount", "ThreadCount", "TotalStartedThreadCount" ]
+    } ],
+    "numQueryThreads" : 4
+  } ]
+}
