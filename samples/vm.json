@@ -1,7 +1,7 @@
 {
   "servers" : [ {
-    "port" : "${jmx.port}",
-    "host" : "${jmx.host}",
+    "port" : "localhost",
+    "host" : "3030",
     "queries" : [ {
       "outputWriters" : [ {
         "@class" : "com.googlecode.jmxtrans.model.output.KeyOutWriter",
@@ -46,8 +46,6 @@
       "obj" : "java.lang:type=GarbageCollector,name=*",
       "resultAlias": "gc",
       "attr" : [ "CollectionCount", "CollectionTime" ]
-    } ],
-    "numQueryThreads" : 4
     }, {
       "outputWriters" : [ {
         "@class" : "com.googlecode.jmxtrans.model.output.KeyOutWriter",
