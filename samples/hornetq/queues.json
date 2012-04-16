@@ -1,0 +1,30 @@
+{
+  "servers":[
+    {
+      "port":"1099",
+      "host":"localhost",
+      "queries":[
+        {
+          "obj":"org.hornetq:module=JMS,type=Queue,name=*",
+          "attr":[
+            "MessageCount",
+            "DeliveringCount",
+            "ScheduledCount",
+            "MessagesAdded",
+            "ConsumerCount"
+          ],
+          "typeNames" : ["name"],
+          "resultAlias" : "HornetQ.Queue",
+          "outputWriters":[
+            {
+              "@class":"com.googlecode.jmxtrans.model.output.KeyOutWriter",
+              "settings":{
+                "outputFile" : "${output.dir}/hornetq.txt"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
